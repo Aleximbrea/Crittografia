@@ -23,8 +23,9 @@
 <div class="container-fluid" style="color: rgb(77, 76, 76); font-size: large;">
     <center>
         <p class="mt-5 h3 mb-4">Benvenuto!</p>
-        <p>In questo sito è possibile codificare e decodificare testo utilizzado immagini.</p>
+        <p>In questo sito è possibile <a href="{{ url_for('codifica') }}" style="text-decoration: none;" class="link-info">codificare</a> e <a href="{{ url_for('decodifica') }}" style="text-decoration: none;" class="link-info">decodificare</a> testo utilizzado immagini.</p>
         <p>Sono supportate solo immagini con estensione .jpg e .png</p>
+        <p>Sono supportati caratteri ascii fino a 126 in base decimale quindi sono esclusi caratteri accentati e simboli latini usali a tuo rischio e pericolo</p>
     </center>
 </div>
 

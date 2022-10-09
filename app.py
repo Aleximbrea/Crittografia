@@ -37,7 +37,7 @@ def codifica():
         try:
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                file.save(f"static\client\img\{filename}")
             # Trasformo l'immagine in un immagine ascii
             ascii_image = ic.img_to_ascii(f"static\client\img\{filename}", 100)
             coded_string = encryption.crypt(string, ascii_image)
@@ -62,7 +62,7 @@ def decodifica():
         try:
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
-                file.save(os.path.join(app.config['UPLOAD_FOLDER'], filename))
+                file.save(f"static\client\img\{filename}")
             # Trasformo l'immagine in un immagine ascii
             ascii_image = ic.img_to_ascii(f"static\client\img\{filename}", 100)
             decoded_string = encryption.decrypt(string, ascii_image)
