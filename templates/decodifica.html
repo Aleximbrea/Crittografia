@@ -1,0 +1,48 @@
+{% extends 'layout.html' %}
+
+{% block body %}
+
+<nav class="navbar navbar-expand-lg navbar-dark bg-primary">
+    <div class="container-fluid">
+        <a href="{{ url_for('home') }}" class="navbar-brand h1 mb-0">CCI</a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarcollapsecontent" aria-controls="navbarcollapsecontent" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarcollapsecontent">
+            <ul class="navbar-nav">
+                <li class="nav-item">
+                    <a href="{{ url_for('codifica') }}" class="nav-link">Codifica</a>
+                </li>
+                <li class="nav-item">
+                    <a href="{{ url_for('decodifica') }}" class="nav-link active" aria-current="page">Decodifica</a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<div class="container pt-3 text-center">
+    <div class="row align-items-start">
+        <div class="col">
+          <form class="mt-4 mb-4" method="POST" enctype="multipart/form-data">
+            <div class="mr-2" id="form1">
+              <label for="texttocrypt" class="form-label" style="color: rgb(77, 76, 76);">Inserisci il testo da decodificare</label>
+              <textarea class="form-control" id="texttocrypt" cols="30" rows="10" required name="stringtodecode"></textarea>
+            </div>
+            <div class="mb-3 mt-4">
+                <label for="imgfile" class="form-label" style="color: rgb(77, 76, 76);">Inserisci il file con cui decodificare il testo</label>
+                <input type="file" class="form-control" id="imgfile" name="imgkey">
+            </div>
+            <button type="submit" class="btn btn-primary px-5">Invia</button>
+          </form>
+          {% if insuccess %}
+            <p style="color: red;">Tipo di file non supportato</p>
+          {% endif %}
+        </div>
+        <div class="col" style="color: rgb(77, 76, 76);">
+          <p class="mt-4">Testo decodificato:</p>
+          <p class="mt-3" style="display: inline-block; word-break: break-word;">{{ decoded_string }}</p>
+        </div>
+    </div>
+</div>
+
+{% endblock %}
