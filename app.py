@@ -37,15 +37,15 @@ def codifica():
         try:
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
-                file.save(f"static\client\img\{filename}")
+                file.save(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], filename))
             # Trasformo l'immagine in un immagine ascii
-            ascii_image = ic.img_to_ascii(f"static\client\img\{filename}", 100)
+            ascii_image = ic.img_to_ascii(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], filename), 100)
             coded_string = encryption.crypt(string, ascii_image)
             # Cancello dal server l'immagine usata per la crittografia
-            os.remove(f"static\client\img\{filename}")
+            # os.remove(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], filename))
             return render_template('codifica.html', coded_string = coded_string)
         except:
-            pass
+            print("Non funziona")
         return render_template('codifica.html', insuccess = True)
     else:
         string = None
@@ -62,12 +62,12 @@ def decodifica():
         try:
             if file and allowed_file(file.filename):
                 filename = secure_filename(file.filename)
-                file.save(f"static\client\img\{filename}")
+                file.save(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], filename))
             # Trasformo l'immagine in un immagine ascii
-            ascii_image = ic.img_to_ascii(f"static\client\img\{filename}", 100)
+            ascii_image = ic.img_to_ascii(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], filename), 100)
             decoded_string = encryption.decrypt(string, ascii_image)
             # Cancello dal server l'immagine usata per la crittografia
-            os.remove(f"static\client\img\{filename}")
+            os.remove(os.path.join(app.root_path, app.config['UPLOAD_FOLDER'], filename))
             return render_template('decodifica.html', decoded_string = decoded_string)
         except:
             pass

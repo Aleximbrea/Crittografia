@@ -1,6 +1,6 @@
 
 def from_ascii_to_dec_array(stringa):
-    
+
     decimal_array = []
     decimal_string = ""
     for char in stringa:
@@ -9,7 +9,7 @@ def from_ascii_to_dec_array(stringa):
 
 
 def from_dec_to_ascii(array):
-    
+
     ascii_string = []
     for i in array:
         ascii_string.append(chr(i))
@@ -44,7 +44,7 @@ def sottrai_dec(num, sottraendo):
         if num > 31 and num < 127:
             coded = True
     return num
-            
+
 
 
 if __name__ == "__main__":
